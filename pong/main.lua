@@ -58,9 +58,9 @@ function love.update(dt)
     if gameState == 'serve' then
         ball.dy = math.random(2) == 1 and -100 or 100
         if servingPlayer == 1 then
-            ball.dx = math.random(80, 100)
+            ball.dx = math.random(150, 200)
         else
-            ball.dx = -math.random(80, 100)
+            ball.dx = -math.random(150, 200)
         end
     elseif gameState == 'play' then
         if ball:collides(player1) then
@@ -100,31 +100,31 @@ function love.update(dt)
             ball.dy = -ball.dy
             sounds['wall_hit']:play()
         end
-    end
 
-    if ball.x < 0 then
-        servingPlayer = 1
-        player2Score = player2Score + 1
-        sounds['score']:play()
-        if player2Score == 10 then
-            winningPlayer = 2
-            gameState = 'done'
-        else
-            gameState = 'serve'
-            ball:reset()
+        if ball.x < 0 then
+            servingPlayer = 1
+            player2Score = player2Score + 1
+            sounds['score']:play()
+            if player2Score == 10 then
+                winningPlayer = 2
+                gameState = 'done'
+            else
+                gameState = 'serve'
+                ball:reset()
+            end
         end
-    end
-
-    if ball.x > VIRTUAL_WIDTH then
-        servingPlayer = 2
-        player1Score = player1Score + 1
-        sounds['score']:play()
-        if player1Score == 10 then
-            winningPlayer = 1
-            gameState = 'done'
-        else
-            gameState = 'serve'
-            ball:reset()
+    
+        if ball.x > VIRTUAL_WIDTH then
+            servingPlayer = 2
+            player1Score = player1Score + 1
+            sounds['score']:play()
+            if player1Score == 10 then
+                winningPlayer = 1
+                gameState = 'done'
+            else
+                gameState = 'serve'
+                ball:reset()
+            end
         end
     end
 
