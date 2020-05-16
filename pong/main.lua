@@ -58,9 +58,9 @@ function love.update(dt)
     if gameState == 'serve' then
         ball.dy = math.random(2) == 1 and -100 or 100
         if servingPlayer == 1 then
-            ball.dx = math.random(150, 200)
+            ball.dx = math.random(80, 100)
         else
-            ball.dx = -math.random(150, 200)
+            ball.dx = -math.random(80, 100)
         end
     elseif gameState == 'play' then
         if ball:collides(player1) then
