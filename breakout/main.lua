@@ -58,9 +58,13 @@ function love.load()
         ['play'] = function() return PlayState() end,
         ['serve'] = function() return ServeState() end,
         ['game-over'] = function() return GameOverState() end,
-        ['victory'] = function() return VictoryState() end
+        ['victory'] = function() return VictoryState() end,
+        ['high-scores'] = function() return HighScoreState() end,
+        ['enter-high-score'] = function() return EnterHighScoreState() end
     }
-    gStateMachine:change('start')
+    gStateMachine:change('start', {
+        highScores = loadHighScores()
+    })
 
     love.keyboard.keysPressed = {}
 end
